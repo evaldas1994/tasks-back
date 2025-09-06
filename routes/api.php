@@ -15,28 +15,28 @@ RateLimiter::for('api', function ($request) {
 });
 
 // Jobs
-Route::middleware('throttle:api')->group(function () {
+//Route::middleware('throttle:api')->group(function () {
     Route::prefix('jobs')->group(function () {
         Route::prefix('tasks')->group(function () {
             Route::get('create-periodic-tasks-job', [CreatePeriodicTasksJob::class, 'handle']);
             Route::get('update-uncompleted-tasks-job', [UpdateUncompletedTasksJob::class, 'handle']);
         });
     });
-});
+//});
 
 // Atviras route tik store funkcijai
-Route::middleware('throttle:api')->group(function () {
+//Route::middleware('throttle:api')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('register', [AuthController::class, 'register']);
         Route::post('login', [AuthController::class, 'login']);
     });
-});
+//});
 
-Route::middleware('auth:sanctum', 'throttle:api')->group(function () {
+//Route::middleware('auth:sanctum', 'throttle:api')->group(function () {
     Route::apiResource('task-templates', TaskTemplateController::class);
     Route::apiResource('tasks', TaskController::class);
     Route::get('tasks/{task}/complete', [TaskController::class, 'complete']);
-});
+//});
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
