@@ -4,6 +4,7 @@
 namespace App\Console;
 
 use App\Jobs\Task\CreatePeriodicTasksJob;
+use App\Jobs\Task\UpdateUncompletedTasksJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
