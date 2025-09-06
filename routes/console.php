@@ -1,6 +1,7 @@
 <?php
 
 use App\Jobs\Task\CreatePeriodicTasksJob;
+use App\Jobs\Task\UpdateUncompletedTasksJob;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
@@ -17,4 +18,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-Schedule::job(new CreatePeriodicTasksJob)->everyMinute();
+Schedule::job(new UpdateUncompletedTasksJob())->dailyAt('23:59:00');
+Schedule::job(new CreatePeriodicTasksJob)->dailyAt('00:01:00');
