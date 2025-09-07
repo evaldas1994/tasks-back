@@ -26,7 +26,7 @@ class TaskTemplateSeeder extends Seeder
         return [
             [
                 'name' => 'Rytas',
-                'description' => 'Reguliariai keltis darbo dienomis',
+                'description' => 'Reguliariai keltis visomis dienomis',
                 'user_id' => User::first()->id,
                 'week_days' => [1, 2, 3, 4, 5, 6, 7],
                 'time' => '05:45',
