@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\TaskTemplate;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TaskTemplateResource;
 use App\Models\TaskTemplate;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,9 @@ class TaskTemplateController extends Controller
 {
     public function index()
     {
-        return TaskTemplate::all();
+        $taskTemplates = TaskTemplate::where('user_id', auth()->id())->get();
+
+        return TaskTemplateResource::collection($taskTemplates);
     }
 
     public function store(Request $request)
