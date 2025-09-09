@@ -38,6 +38,13 @@ class TaskTemplate extends Model
         $this->save();
     }
 
+    public static function forOwnerOrderedByStreak()
+    {
+        return self::where('user_id', auth()->id())
+            ->orderByDesc('streak')
+            ->get();
+    }
+
     public function tasks()
     {
         return $this->hasMany(Task::class);

@@ -11,7 +11,7 @@ class TaskTemplateController extends Controller
 {
     public function index()
     {
-        $taskTemplates = TaskTemplate::where('user_id', auth()->id())->get();
+        $taskTemplates = TaskTemplate::forOwnerOrderedByStreak();
 
         return TaskTemplateResource::collection($taskTemplates);
     }
