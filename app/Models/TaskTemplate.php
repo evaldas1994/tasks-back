@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TaskTemplate extends Model
 {
@@ -24,28 +26,42 @@ class TaskTemplate extends Model
         'week_days' => 'json',
     ];
 
-    public function addStreak() {
-        $this->streak = $this->streak + 1;
 
-        if ($this->streak > $this->streak_max)
+
+
+
+    // ---------- Objekto metodai ----------
+    public function addStreak(): void
+    {
+        $this->streak++;
+        if ($this->streak > $this->streak_max) {
             $this->streak_max = $this->streak;
-
+        }
         $this->save();
     }
-
-    public function resetStreak() {
+    public function resetStreak(): void
+    {
         $this->streak = 0;
         $this->save();
     }
 
-    public static function forOwnerOrderedByStreak()
+
+
+
+
+    // ---------- Query Scope ----------
+    public function scopeForOwnerOrderedByStreak($query, $userId): Builder
     {
-        return self::where('user_id', auth()->id())
-            ->orderByDesc('streak')
-            ->get();
+        return $query->where('user_id', $userId)
+            ->orderByDesc('streak');
     }
 
-    public function tasks()
+
+
+
+
+    // ---------- Ryšiai ----------
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
