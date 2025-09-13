@@ -12,11 +12,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::with('taskTemplate')
-            ->whereHas('taskTemplate', function ($q) {
-                $q->where('user_id', auth()->id());
-            })
-            ->whereIn('status_id', [1, 2])
+        $tasks = Task::index(auth()->id())
             ->get();
 
         return TaskResource::collection($tasks);

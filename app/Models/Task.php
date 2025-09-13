@@ -48,7 +48,7 @@ class Task extends Model
 
 
     // ---------- Query Scope ----------
-    public function scopeIndex($query, int $userId, string $date): Builder
+    public function scopeIndex($query, int $userId): Builder
     {
         return $query->with('taskTemplate')
             ->whereHas('taskTemplate', function ($q) use ($userId) {
