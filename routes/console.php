@@ -18,5 +18,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-Schedule::job(new UpdateUncompletedTasksJob())->dailyAt('23:59:00');
+Schedule::job(new UpdateUncompletedTasksJob())->dailyAt('00:00:00');
 Schedule::job(new CreatePeriodicTasksJob)->dailyAt('00:01:00');
