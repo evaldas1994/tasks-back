@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\api\Auth\AuthController;
-use App\Http\Controllers\api\ManifestPWA\ManifestPWAController;
 use App\Http\Controllers\api\Task\TaskController;
 use App\Http\Controllers\api\TaskTemplate\TaskTemplateController;
 use App\Jobs\Task\CreatePeriodicTasksJob;
@@ -14,9 +13,6 @@ use Illuminate\Support\Facades\RateLimiter;
 RateLimiter::for('api', function ($request) {
     return Limit::perMinute(60)->by($request->ip());
 });
-
-//// PWA manifest
-Route::get('manifest-pwa', [ManifestPWAController::class, '__invoke']);
 
 // Jobs
 //Route::middleware('throttle:api')->group(function () {
