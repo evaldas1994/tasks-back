@@ -27,7 +27,7 @@ class UpdateUncompletedTasksJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $date = Carbon::yesterday();
+        $date = Carbon::now();
 
         $tasks = Task::forAutoClose($date)->get();
 
