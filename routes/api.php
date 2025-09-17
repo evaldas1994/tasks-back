@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\Auth\AuthController;
 use App\Http\Controllers\api\Task\TaskController;
 use App\Http\Controllers\api\TaskTemplate\TaskTemplateController;
+use App\Jobs\Task\CounterJob;
 use App\Jobs\Task\CreatePeriodicTasksJob;
 use App\Jobs\Task\UpdateUncompletedTasksJob;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,8 @@ RateLimiter::for('api', function ($request) {
 // Jobs
 //Route::middleware('throttle:api')->group(function () {
     Route::prefix('jobs')->group(function () {
+        Route::get('job-counter', [CounterJob::class, 'handle']);
+
         Route::prefix('tasks')->group(function () {
             Route::get('create-periodic-tasks-job', [CreatePeriodicTasksJob::class, 'handle']);
             Route::get('update-uncompleted-tasks-job', [UpdateUncompletedTasksJob::class, 'handle']);

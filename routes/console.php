@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\Task\CounterJob;
 use App\Jobs\Task\CreatePeriodicTasksJob;
 use App\Jobs\Task\UpdateUncompletedTasksJob;
 use Illuminate\Foundation\Inspiring;
@@ -18,5 +19,6 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
+Schedule::job(new CounterJob())->everyMinute();
 Schedule::job(new UpdateUncompletedTasksJob())->dailyAt('23:59:00');
 Schedule::job(new CreatePeriodicTasksJob)->dailyAt('00:01:00');
