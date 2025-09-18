@@ -48,6 +48,7 @@ class SystemParameter extends Model
             $value =  (bool)$value;
 
         $param->value = $value;
+        echo "saugom: ". $value;
         $param->save();
     }
 }
