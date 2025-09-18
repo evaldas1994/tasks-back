@@ -59,3 +59,26 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+#procesai
+ps aux | grep 'schedule:work' | grep -v grep
+ps aux | grep 'queue:work' | grep -v grep
+pkill -f 'queue:work'
+
+#back
+cd ~/domains/titobu.eu/public_html/back &&
+php artisan optimize:clear &&
+git stash && git pull origin master &&
+composer install --no-dev --optimize-autoloader &&
+php artisan migrate --seed --force &&
+composer dump-autoload &&
+php artisan optimize &&
+pkill -f 'schedule:work' || true
+pkill -f 'queue:work' || true
+nohup php artisan schedule:work > /dev/null 2>&1 &
+nohup php artisan queue:work --daemon > /dev/null 2>&1 &
+
+#front
+cd ~/domains/titobu.eu/public_html/front && git stash && git pull origin master && npm install && npm run build &&
+cd ~/domains/titobu.eu/public_html/ulala && git stash && git pull origin master && npm install && npm run build 
+
