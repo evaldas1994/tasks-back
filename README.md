@@ -76,7 +76,7 @@ php artisan optimize &&
 pkill -f 'schedule:work' || true
 pkill -f 'queue:work' || true
 nohup php artisan schedule:work > /dev/null 2>&1 &
-nohup php artisan queue:work --daemon > /dev/null 2>&1 &
+nohup php artisan queue:work --tries=3 --timeout=90 > /dev/null 2>&1 &
 
 #front
 cd ~/domains/titobu.eu/public_html/front && git stash && git pull origin master && npm install && npm run build &&
