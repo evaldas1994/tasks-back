@@ -21,4 +21,4 @@ Artisan::command('inspire', function () {
 
 Schedule::job(new CounterJob())->everyMinute();
 Schedule::job(new UpdateUncompletedTasksJob())->dailyAt('23:59:00');
-Schedule::job(new CreatePeriodicTasksJob)->dailyAt('06:35:00');
+Schedule::job(new CreatePeriodicTasksJob)->dailyAt('00:01:00');
