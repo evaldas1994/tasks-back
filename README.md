@@ -75,6 +75,7 @@ composer dump-autoload &&
 php artisan optimize &&
 pkill -f 'schedule:work' || true
 pkill -f 'queue:work' || true
+
 nohup php artisan schedule:work > /dev/null 2>&1 &
 nohup php artisan queue:work --tries=3 --timeout=90 > /dev/null 2>&1 &
 

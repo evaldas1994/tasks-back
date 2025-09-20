@@ -7,11 +7,15 @@ use App\Models\Task;
 use App\Models\TaskTemplate;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Queue\Queueable;
 
 class CreatePeriodicTasksJob implements ShouldQueue
 {
     use Queueable;
+
+    private Collection $taskTemplates;
+    private int $statusId;
 
     /**
      * Create a new job instance.
@@ -29,7 +33,6 @@ class CreatePeriodicTasksJob implements ShouldQueue
     {
         $this->createPeriodicTask(Carbon::now());
         $this->createPeriodicTask(Carbon::tomorrow());
-
     }
 
     private function createPeriodicTask($date)
