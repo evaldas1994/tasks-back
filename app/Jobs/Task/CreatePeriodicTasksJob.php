@@ -31,7 +31,7 @@ class CreatePeriodicTasksJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->createPeriodicTask(Carbon::now());
+        $this->createPeriodicTask(Carbon::today());
         $this->createPeriodicTask(Carbon::tomorrow());
     }
 
