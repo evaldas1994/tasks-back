@@ -46,9 +46,16 @@ class TaskTemplate extends Model
         $this->save();
     }
 
-    public function useFreeze(): void
+    public function addFreeze(): void
     {
-        $this->freeze = $this->freeze - 1;
+        if ($this->streak % 10 !== 0)
+            return;
+
+        $this->freeze++;
+        $this->save();
+    }  public function useFreeze(): void
+    {
+        $this->freeze--;
         $this->save();
     }
 

@@ -45,6 +45,7 @@ class TaskController extends Controller
     {
         $task->setCompleted();
         $task->taskTemplate->addStreak();
+        $task->taskTemplate->addFreeze();
 
         return response()->json([
             'message' => 'Task completed successfully',
