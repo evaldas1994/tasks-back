@@ -20,6 +20,7 @@ class TaskTemplate extends Model
         'duration_in_minutes',
         'streak',
         'streak_max',
+        'freeze',
     ];
 
     protected $casts = [
@@ -42,6 +43,12 @@ class TaskTemplate extends Model
     public function resetStreak(): void
     {
         $this->streak = 0;
+        $this->save();
+    }
+
+    public function useFreeze(): void
+    {
+        $this->freeze = $this->freeze - 1;
         $this->save();
     }
 

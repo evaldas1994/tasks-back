@@ -32,6 +32,7 @@ class TaskTemplateSeeder extends Seeder
                 'duration_in_minutes' => 5,
                 'streak' => 0,
                 'streak_max' => 0,
+                'freeze' => 0,
             ],
             [
                 'name' => 'Sporto klubas',
@@ -42,6 +43,7 @@ class TaskTemplateSeeder extends Seeder
                 'duration_in_minutes' => 90,
                 'streak' => 0,
                 'streak_max' => 0,
+                'freeze' => 0,
             ],
             [
                 'name' => 'Projektas',
@@ -52,6 +54,7 @@ class TaskTemplateSeeder extends Seeder
                 'duration_in_minutes' => 90,
                 'streak' => 0,
                 'streak_max' => 0,
+                'freeze' => 0,
             ],
             [
                 'name' => 'Mokymasis',
@@ -62,6 +65,7 @@ class TaskTemplateSeeder extends Seeder
                 'duration_in_minutes' => 90,
                 'streak' => 0,
                 'streak_max' => 0,
+                'freeze' => 0,
             ],
             [
                 'name' => 'Knyga',
@@ -72,6 +76,7 @@ class TaskTemplateSeeder extends Seeder
                 'duration_in_minutes' => 30,
                 'streak' => 0,
                 'streak_max' => 0,
+                'freeze' => 0,
             ],
             [
                 'name' => 'Dokumentacija',
@@ -82,6 +87,7 @@ class TaskTemplateSeeder extends Seeder
                 'duration_in_minutes' => 30,
                 'streak' => 0,
                 'streak_max' => 0,
+                'freeze' => 0,
             ],
         ];
     }

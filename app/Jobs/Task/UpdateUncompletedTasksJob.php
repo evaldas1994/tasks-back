@@ -33,7 +33,11 @@ class UpdateUncompletedTasksJob implements ShouldQueue
 
         foreach ($tasks as $task) {
             $task->setUncompleted();
-            $task->taskTemplate->resetStreak();
+
+            if ($task->taskTemplate->freeze > 0)
+                $task->taskTemplate->useFreeze();
+            else
+                $task->taskTemplate->resetStreak();
         }
     }
 }

@@ -15,6 +15,7 @@ class TaskTemplateResource extends JsonResource
             'description' => $this->description,
             'streak' => $this->streak,
             'streak_max' => $this->streak_max,
+            'freeze' => $this->freeze,
         ];
     }
 }
